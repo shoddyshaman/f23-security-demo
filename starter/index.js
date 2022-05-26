@@ -1,48 +1,53 @@
-const secretMessagesContainer = document.querySelector('#secret-messages-container')
-const secretMessageForm = document.querySelector('#secret-message-form')
+const secretMessagesContainer = document.querySelector(
+  "#secret-messages-container"
+);
+const secretMessageForm = document.querySelector("#secret-message-form");
 
-const baseURL = `http://localhost:4040/api/messages`
+const baseURL = `http://localhost:4040/api/messages`;
 
-const postMessage = body => axios.post(baseURL, body).then(res => {
-  console.log(res.data)
-  displayMessages(res.data)
-}).catch(err => {
-  console.log(err)
-  alert('Uh oh. not working....')
-})
+const postMessage = (body) =>
+  axios
+    .post(baseURL, body)
+    .then((res) => {
+      console.log(res.data);
+      displayMessages(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("Uh oh. not working....");
+    });
 
 function submitHandler(e) {
-    e.preventDefault()
+  e.preventDefault();
 
-    let pin = document.querySelector('#secret-message-pin-input')
-    let message = document.querySelector('#secret-message-input')
+  let pin = document.querySelector("#secret-message-pin-input");
+  let message = document.querySelector("#secret-message-input");
 
-    let bodyObj = {
-        pin: pin.value,
-        message: message.value
-    }
+  let bodyObj = {
+    pin: pin.value,
+    message: message.value,
+  };
 
-    postMessage(bodyObj)
+  postMessage(bodyObj);
 
-    pin.value = ''
-    message.value = ''
+  pin.value = "";
+  message.value = "";
 }
 
 function createMessage(data) {
-    const messageCard = document.createElement('div')
-    messageCard.classList.add('message-card')
+  const messageCard = document.createElement("div");
+  messageCard.classList.add("message-card");
 
-    messageCard.innerHTML = `<p class="message">${data}</p>`
+  messageCard.innerHTML = `<p class="message">${data}</p>`;
 
-
-    secretMessagesContainer.appendChild(messageCard)
+  secretMessagesContainer.appendChild(messageCard);
 }
 
 function displayMessages(data) {
-  secretMessagesContainer.innerHTML = ``
+  secretMessagesContainer.innerHTML = ``;
   for (let i = 0; i < data.messages.length; i++) {
-      createMessage(data.messages[i])
+    createMessage(data.messages[i]);
   }
 }
 
-secretMessageForm.addEventListener('submit', submitHandler)
+secretMessageForm.addEventListener("submit", submitHandler);
