@@ -1,7 +1,7 @@
 const secretMessagesContainer = document.querySelector('#secret-messages-container')
 const secretMessageForm = document.querySelector('#secret-message-form')
 
-const baseURL = `http://localhost:4004/api/messages`
+const baseURL = `http://localhost:4040/api/messages`
 
 const postMessage = body => axios.post(baseURL, body).then(res => {
   console.log(res.data)
