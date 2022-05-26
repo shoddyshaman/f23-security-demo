@@ -1,13 +1,12 @@
-const express = require('express')
-const cors = require('cors')
+const express = require("express");
+const cors = require("cors");
 
-const app = express()
+const app = express();
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
-const { handleMessage} = require('./controllers/messageController')
+const { handleMessage } = require("./controllers/messageController");
 
-
-app.post('/api/messages',handleMessage)
-app.listen(4040,() => console.log(`server is runnning on 4040`))
+app.post("/api/messages", handleMessage);
+app.listen(4040, () => console.log(`server is runnning on 4040`));
